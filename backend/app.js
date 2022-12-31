@@ -31,7 +31,7 @@ app.post('/api/payment',protect ,async(req, res)=>{
             success_url: "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
             cancel_url: 'http://localhost:3000/cancel'
         })
-
+        console.log("ALL GOOD")
         res.json({
             url: session.url
         })
