@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import  asyncHandler from 'express-async-handler'
 import jwt from 'jsonwebtoken'
 import { promisify } from 'util'
+import Cart from "../models/Cart.js";
 
 
 export const signup = asyncHandler(async(req, res)=>{
@@ -10,6 +11,10 @@ export const signup = asyncHandler(async(req, res)=>{
          username, email, password, password_repeat
         });
     const token = jwt.sign({id: user._id}, "ANNESHA_GUHA");
+    await Cart.create({
+        user_id: user._id,
+        assets: []
+    })
     res.json({
         data: {
             token, user
