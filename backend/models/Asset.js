@@ -1,12 +1,9 @@
 import mongoose from "mongoose";
-
-
 const assetSchema = new mongoose.Schema({
-    
-     title: {
+    title: {
          type: String,
          required: [true, "Please provide a title to your digital asset"],
-         maxLength: [20, "The Title should not be above 20 characters"],
+         maxLength: [200, "The Title should not be above 200 characters"],
      },
     description:{
         type: String,
@@ -16,7 +13,11 @@ const assetSchema = new mongoose.Schema({
     summary:{
         type: String,
         required: [true, "Please provide a summary to your digital asset"],
-        maxLength: [100, "The summary of the asset should not be over 100 characters"]
+        maxLength: [100000, "The summary of the asset should not be over 100000 characters"]
+    },
+    dp:{
+        type: String,
+        required: [true, "A dp is must for your asset"]
     },
     price:{
          type: Number,
@@ -25,7 +26,39 @@ const assetSchema = new mongoose.Schema({
     priceID:{
          type: String,
         required:[true, " A price ID is required"]
+    },
+    reviews:[{
+        
+        rating:{
+            type: Number,
+            required: [true, "A rating is a must for a review"],
+            
+            
+        },
+        text: {
+            type: String,
+        },
+        user_id: {
+            type: String, 
+            required: [true, "A rating shud belong to an user id"]
+        },
+        username:{
+            type: String, 
+            required: [true, "A username is a must of the review"]
+        }
+        
+    }],
+
+    average_rating:{
+        type:Number, 
+        default: 0
+    },
+
+    reviews_count:{
+        type: Number, 
+        default: 0
     }
+    
 
 });
 

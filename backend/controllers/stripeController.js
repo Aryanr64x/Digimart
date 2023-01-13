@@ -65,7 +65,7 @@ export const success = asyncHandler(async(req, res)=>{
             function(err, lineItems) {
                 if(!err){
                     lineItems.data.forEach( async (lineItem)=>{
-
+                        
                         const isSuccess = await sendEmail(lineItem.description, req.body.user.email)
                         if(isSuccess){
                          return   res.status(200).json({ message: "Link Successfully sent", tag: "SENT" })
