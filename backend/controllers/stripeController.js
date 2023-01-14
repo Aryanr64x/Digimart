@@ -46,8 +46,8 @@ export const pay = asyncHandler(async(req, res)=>{
         const session  = await s.checkout.sessions.create({
             line_items: lineItems,
             mode: 'payment',
-            success_url: "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url: 'http://localhost:3000/cancel'
+            success_url: "https://www.digimartt.netlify.app/success?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url: 'http://www.digimartt.netlify.app/cancel'
         })
         res.json({
             url: session.url
